@@ -1,8 +1,6 @@
 package com.example.dororo.backend.controller;
 
-import com.example.dororo.backend.modelEntity.Cuerpo;
 import com.example.dororo.backend.modelEntity.Usuario;
-import com.example.dororo.backend.service.CuerpoService;
 import com.example.dororo.backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class UsuarioRestController {
-
     @Autowired
     private UsuarioService usuarioService;
 
@@ -40,16 +37,13 @@ public class UsuarioRestController {
         usuarioService.remove(id);
     }
 
-    //Verificar este metodo
-    /***
-    @PutMapping("/cuerpo/{id}")
+    @PutMapping("/usuario/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Cuerpo update(@PathVariable Long id, @RequestBody Cuerpo cuerpo) {
-        Cuerpo actualizado = cuerpoService.findById(id);
-        actualizado.setParte(cuerpo.getParte());
-        actualizado.setEstado(cuerpo.getEstado());
-        return cuerpoService.save(cuerpo);
+    public Usuario update(@PathVariable Long id, @RequestBody Usuario usuario) {
+        Usuario actualizado = usuarioService.findById(id);
+        actualizado.setNombre(usuario.getNombre());
+        actualizado.setApellido(usuario.getApellido());
+        actualizado.setFechaNac(usuario.getFechaNac());
+        return usuarioService.save(usuario);
     }
-    */
-
 }

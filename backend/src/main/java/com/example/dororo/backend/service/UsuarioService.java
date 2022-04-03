@@ -1,8 +1,6 @@
 package com.example.dororo.backend.service;
 
-import com.example.dororo.backend.modelDAO.ICuerpoDAO;
 import com.example.dororo.backend.modelDAO.IUsuarioDAO;
-import com.example.dororo.backend.modelEntity.Cuerpo;
 import com.example.dororo.backend.modelEntity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
