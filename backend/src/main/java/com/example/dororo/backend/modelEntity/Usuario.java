@@ -1,0 +1,71 @@
+package com.example.dororo.backend.modelEntity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+@Entity(name = "usuario")
+public class Usuario {
+
+    @Id
+    private long cedula;
+    @Column
+    private String nombre;
+    @Column
+    private String apellido;
+    @Column
+    private String fechaNac;
+
+    /**
+     * Verificar
+     */
+    @Column
+    private String edad;
+
+    public long getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(long cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(String fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public Period getEdad() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNac = LocalDate.parse(getFechaNac(), formato);
+        LocalDate fechaAct = LocalDate.now();
+
+        Period edad = Period.between(fechaNac, fechaAct);
+        System.out.printf("Tu edad es: %s años, %s meses y %s días",
+                edad.getYears(), edad.getMonths(), edad.getDays());
+
+        return edad;
+    }
+}
