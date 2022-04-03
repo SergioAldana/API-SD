@@ -18,12 +18,8 @@ public class Usuario {
     private String apellido;
     @Column
     private String fechaNac;
-
-    /**
-     * Verificar
-     */
     @Column
-    private String edad;
+    private Period edad;
 
     public long getCedula() {
         return cedula;
@@ -57,15 +53,22 @@ public class Usuario {
         this.fechaNac = fechaNac;
     }
 
+    /**
+     * Nose porque tanto set como get no me estan funcionando como deberia
+     */
     public Period getEdad() {
+        /*
+        System.out.printf("Tu edad es: %s años, %s meses y %s días",
+        edad.getYears(), edad.getMonths(), edad.getDays());
+        */
+        return edad;
+    }
+
+    public void setEdad() {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNac = LocalDate.parse(getFechaNac(), formato);
         LocalDate fechaAct = LocalDate.now();
 
-        Period edad = Period.between(fechaNac, fechaAct);
-        System.out.printf("Tu edad es: %s años, %s meses y %s días",
-                edad.getYears(), edad.getMonths(), edad.getDays());
-
-        return edad;
+        this.edad = Period.between(fechaNac, fechaAct);
     }
 }
